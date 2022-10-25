@@ -43,16 +43,44 @@ password = input("password: ")
 
 
 def pocetslov():
-    count_of_words = len(TEXTS[int(choice)].split())
+    count_of_words = len(TEXTS[int(choice) - 1].split())
     print("There are ", count_of_words, " words in the selected text.")
 
 def velkepismeno():
-    for word in TEXTS[int(choice)].split():
+    pocet = 0
+    for word in TEXTS[int(choice) - 1].split():
         if word[0].isupper():
-            pocet = len(word)
+         pocet = pocet + 1
     print("There are ", pocet, "titlecase words.")
-            
 
+def pocetcislic():
+    pocet = 0
+    for word in TEXTS[int(choice) - 1].split():
+        if word.isdigit():
+            pocet = pocet + 1
+    print("There are ", pocet, "numeric strings")
+
+def vsechnyvelka():
+    pocet = 0
+    for word in TEXTS[int(choice) - 1].split():
+        if word.isupper() and word[0].isalpha():
+         pocet = pocet + 1                         
+    print("There are ", pocet, "uppercase words.")
+
+def vsechnymala():
+    pocet = 0
+    for word in TEXTS[int(choice) - 1].split():
+        if word.islower():
+         pocet = pocet + 1                        
+    print("There are ", pocet, "lowercase words.")
+
+def sumacislic():
+    vysledek = 0
+    for word in TEXTS[int(choice) - 1].split():
+        if word.isdigit():
+            vysledek += int(word)
+    print("The sum of all the numbers", vysledek)
+            
 
 if users.get(user_name) == password:
     print(seperator,
@@ -60,10 +88,19 @@ if users.get(user_name) == password:
     "We have 3 texts to be analyzed.",
     seperator,
     sep="\n")
-
+ 
     choice = input("Enter a number btw. 1 and 3 to select: ")
     pocetslov()
     velkepismeno()
+    pocetcislic()
+    vsechnyvelka()
+    vsechnymala()
+    sumacislic()
+    print("-" * 30)
+    print("LEN |    OCCURENCES  |   NR")
+    print("-" * 30)
+
+
 
 else:
     print("Špatné jméno nebo heslo..")
