@@ -80,7 +80,22 @@ def sumacislic():
         if word.isdigit():
             vysledek += int(word)
     print("The sum of all the numbers", vysledek)
-            
+
+def graf():
+    word_lengths={}
+    for word in TEXTS[int(choice)-1].split():
+        if word.isalpha():
+            if len (word) in word_lengths:
+                word_lengths[len(word)]+=1
+            else:
+                word_lengths[len(word)] = 1
+        word_lengths = dict(sorted(word_lengths.items()))
+    for length, count in word_lengths.items():
+        print(f"{length:2d}|{'*'*count:<15}{count}")
+
+
+
+
 
 if users.get(user_name) == password:
     print(seperator,
@@ -96,12 +111,10 @@ if users.get(user_name) == password:
     vsechnyvelka()
     vsechnymala()
     sumacislic()
+    graf()
     print("-" * 30)
     print("LEN |    OCCURENCES  |   NR")
     print("-" * 30)
-
-
-
 else:
     print("Špatné jméno nebo heslo..")
 
